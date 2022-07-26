@@ -1,7 +1,9 @@
 Setup:
 
 1. run `npm install`
-2. create .env file
+2. create .gitignore
+  * add .env
+3. create .env file
   * add GUILD_ID
   * add CLIENT_ID
   * add TOKEN
