@@ -21,7 +21,14 @@ app.js
         ./actions
 ```
 
-When app starts, it pulls each module in and runs them on `client`. The configuration handler must be run first as other handlers need the config object to run. 
+When app starts, the current order of module loading is
+```
+configuration
+database
+utilities
+actions
+commands
+```
 
 The configuration handler bundles all configuration information to the `client.config` object.
 The command handler pulls each slash command from `./commands` and bundles them to the `client.commands` object.

@@ -7,7 +7,8 @@ const getUtilities = (client) => {
 
     for (const file of utilFiles) {
 	    const util = require(`.${utilDir}/${file}`);
-	    client.utilities[file.slice(0, -3)] = util;
+        const execute = (...args) => util(client, ...args);
+	    client.utilities[file.slice(0, -3)] = execute;
     }
 }
 

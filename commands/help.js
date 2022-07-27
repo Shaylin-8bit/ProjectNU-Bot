@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('discord.js');
 
 const data = new SlashCommandBuilder()
     .setName('help')
-    .setDescription('Display help')
+    .setDescription('Display help');
 
 const execute = async function(client, interaction) {
     console.log(client.commands)
@@ -14,9 +14,9 @@ const execute = async function(client, interaction) {
                 .join('\n')
             }\`\`\``
     });
-}
+};
 
 module.exports = {
     data,
-    execute 
+    execute,
 };
