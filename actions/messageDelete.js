@@ -37,7 +37,6 @@ const fetchDeleter = async (msg) => {
 }
 
 const execute = async (client, msg) => {
-    console.log('here');
     const executor = await fetchDeleter(msg);
     const embed = genEmbed(msg, executor)
     client.utilities.log({embeds: [embed]});
