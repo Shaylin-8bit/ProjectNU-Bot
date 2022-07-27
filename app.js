@@ -1,27 +1,20 @@
 const {Client, GatewayIntentBits} = require('discord.js');
-const secrets = require('./modules/secrets.js');
+const getConfig = require('./modules/configHandler.js');
 const getCommands = require('./modules/commandHandler.js');
+const getUtilities = require('./modules/utilityHandler.js');
+const getActions = require('./modules/actionHandlers.js');
+
+require('dotenv').config();
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.once('ready', async() => {
+    getConfig(client);
+    getUtilities(client);
+    getActions(client);
     await getCommands(client);
-    console.log(`logged in as ${client.user}`); 
+    
+    console.log(`Logged in as ${client.user.username}#${client.user.discriminator}`); 
 });
 
-client.on('interactionCreate', async interaction => {
-	if (!interaction.isChatInputCommand()) return;
-    const command = client.commands.find(x => x.data.name === interaction.commandName);
-	
-    if (!command) return;
-
-	try {
-		await command.execute(interaction);
-	} catch (error) {
-		console.error(error);
-		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-	}
-});
-
-
-client.login(secrets.token);
+client.login(process.env.TOKEN);
