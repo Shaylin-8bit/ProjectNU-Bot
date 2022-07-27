@@ -5,8 +5,8 @@ const getActions = (client) => {
     const actionFiles = fs.readdirSync(actionDir).filter(file => file.endsWith('.js'));
 
     for (const file of actionFiles) {
-	    const action = require(`.${actionDir}/${file}`);
-        const callback = (...args) => {action.execute(client, ...args)}
+	    const execute = require(`.${actionDir}/${file}`);
+        const callback = (...args) => execute(client, ...args);
 	    client.on(file.slice(0, -3), callback); 
     }
 }
