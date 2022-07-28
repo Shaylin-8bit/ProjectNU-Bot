@@ -20,7 +20,7 @@ client.once('ready', async() => {
     console.log('Getting configurations');
     getConfig(client);
     console.log('Getting database');
-    getDatabase(client);
+    await getDatabase(client);
     console.log('Getting utilities');
     getUtilities(client);
     console.log('Getting actions');
