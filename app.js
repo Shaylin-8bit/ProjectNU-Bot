@@ -17,13 +17,19 @@ const client = new Client({
 });
 
 client.once('ready', async() => {
+    console.log('Getting configurations');
     getConfig(client);
+    console.log('Getting database');
     getDatabase(client);
+    console.log('Getting utilities');
     getUtilities(client);
+    console.log('Getting actions');
     getActions(client);
+    console.log('Getting commands')
     await getCommands(client);
     
     console.log(`Logged in as ${client.user.username}#${client.user.discriminator}`);
+    client.utilities.log('Bot started');
 });
 
 client.login(process.env.TOKEN);
