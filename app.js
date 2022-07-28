@@ -20,7 +20,7 @@ client.once('ready', async() => {
     console.log('Getting configurations');
     getConfig(client);
     console.log('Getting database');
-    await getDatabase(client);
+    getDatabase(client);
     console.log('Getting utilities');
     getUtilities(client);
     console.log('Getting actions');
@@ -29,7 +29,8 @@ client.once('ready', async() => {
     await getCommands(client);
     
     console.log(`Logged in as ${client.user.username}#${client.user.discriminator}`);
-    client.utilities.log('Bot started');
+
+    //client.utilities.log('Bot started');
 });
 
 client.login(process.env.TOKEN);
