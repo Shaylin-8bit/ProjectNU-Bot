@@ -3,7 +3,6 @@ Setup:
 1. run `npm install`
 2. create .gitignore
   * add .env
-  * add ./node_modules
 3. create .env file
   * add GUILD_ID
   * add CLIENT_ID
