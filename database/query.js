@@ -1,4 +1,4 @@
-const execute = async(client, database, query) => {
+const execute = async (client, database, query) => {
     const res = await database.query(query);
     return res;
 };

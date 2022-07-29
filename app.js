@@ -27,10 +27,11 @@ client.once('ready', async() => {
     getActions(client);
     console.log('Getting commands')
     await getCommands(client);
-    
-    console.log(`Logged in as ${client.user.username}#${client.user.discriminator}`);
 
-    //client.utilities.log('Bot started');
+    await client.database.clear();
+
+    console.log(`Logged in as ${client.user.username}#${client.user.discriminator}`);
+    client.utilities.log('Bot started');
 });
 
 client.login(process.env.TOKEN);
