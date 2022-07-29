@@ -12,7 +12,7 @@ const partTwo = [
 
 const execute = (client, msg) => {
     const content = msg.content.split('```')
-        .filter((x, index) => (index % 2) && (x.length > (client.config.CODEBLOCK_PROMPT_LENGTH || 50)));
+        .filter((x, index) => (index % 2) && (x.length > (client.config.codeblock_prompt_length || 50)));
     console.log(content);
 
     if (content.length) {

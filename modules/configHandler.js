@@ -5,6 +5,7 @@ const getConfig = (client) => {
         clientId: process.env.CLIENT_ID,
         guildId: process.env.GUILD_ID,
         logChannel: 'bot-logs',
+        codeblock_prompt_length: 75
     };
 };
 
