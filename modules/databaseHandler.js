@@ -1,36 +1,38 @@
-const {Client} = require('pg');
+const {MongoClient} = require('mongodb');
 const fs = require('node:fs');
+require('dotenv').config();
 
 const getClient = async (client) => {
-    const db = new Client({
-        host: process.env.DB_HOST,
-        port: process.env.DB_PORT,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE,
-        ssl: {rejectUnauthorized: false},
-      });
+    const db = new MongoClient(process.env.DB_URL);
     await db.connect();
     return db; 
 }
 
-const getDatabase = (client) => {
+const getDatabase = (app) => {
+    console.log('Building database object...');
     const DBObject = {};
     const actionDir = './database';
     const actionFiles = fs.readdirSync(actionDir).filter(file => file.endsWith('.js'));
 
     for (const file of actionFiles) {
+        console.log(`  Method "${file}"`);
 	    const execute = require(`.${actionDir}/${file}`);
         const callback = async (...args) => {
-            const DB = await getClient();
-            const result = await execute(client, DB, ...args);
-            await DB.end();
+            let DB;
+            try {
+                DB = await getClient();
+            } catch (err) {
+                console.error(err);
+                return;
+            }
+            const result = await execute(app, DB.db(), ...args);
+            await DB.close();
             return result;
         }
 	    DBObject[file.slice(0, -3)] = callback; 
     }
 
-    client.database = DBObject;
+    app.database = DBObject;
 }
 
 module.exports = getDatabase;
