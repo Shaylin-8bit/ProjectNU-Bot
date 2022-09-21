@@ -9,7 +9,6 @@ const getClient = async (client) => {
 }
 
 const getDatabase = (app) => {
-    console.log('Building database object...');
     const DBObject = {};
     const actionDir = './database';
     const actionFiles = fs.readdirSync(actionDir).filter(file => file.endsWith('.js'));

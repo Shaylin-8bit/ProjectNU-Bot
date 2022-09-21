@@ -5,7 +5,13 @@ const getConfig = (client) => {
         clientId: process.env.CLIENT_ID,
         guildId: process.env.GUILD_ID,
         logChannel: 'logs',
-        codeblock_prompt_length: 75
+        codeblock_prompt_length: 75,
+
+        database: {
+            collections: {
+                
+            }
+        }
     };
 };
 
