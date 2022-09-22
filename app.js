@@ -6,6 +6,8 @@ const getUtilities = require('./modules/utilityHandler.js');
 const getActions = require('./modules/actionHandlers.js');
 const getCommands = require('./modules/commandHandler.js');
 
+const startInterface = require('./modules/interfaceHandler.js');
+
 require('dotenv').config();
 
 const client = new Client({
@@ -28,6 +30,8 @@ client.once('ready', async() => {
     getActions(client);
     console.log('Getting commands')
     await getCommands(client);
+
+    startInterface(client);
 
     console.log(`Logged in as ${client.user.username}#${client.user.discriminator}`);
     //client.utilities.log('Bot started');
